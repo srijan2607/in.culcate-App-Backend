@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Routes
 const userlogin = require("./routers/login");
-const Article = require("./routers/article");
+const Article = require("./routers/article_short");
 const Authentication = require("./middleware/authentication");
 
 // Security Packages
