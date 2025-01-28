@@ -14,6 +14,10 @@ const getAllArticles = async () => {
   });
 };
 
+module.exports = {
+  getAllArticles
+};
+
 // Fetch a single long article by ID
 const getArticleById = async (id) => {
   return await prisma.article.findUnique({
