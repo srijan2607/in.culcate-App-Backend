@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  id                Int           @id @default(autoincrement())
+  title             String
+  content           String
+  shortDescription  String
+  createdAt         DateTime      @default(now())
+  categoryId        Int
+  category          Category      @relation(fields: [categoryId], references: [id])
+  tags              Tag[]         @relation("ArticleTags")
+  longArticle       LongArticle?  @relation // No `fields` or `references` here
+  image             String?       // To store the image URL
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  articles Article[]
+}
+
+model Tag {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  articles Article[]  @relation("ArticleTags")
+}
+
+model LongArticle {
+  id         Int       @id @default(autoincrement())
+  title      String    // Title of the long article
+  content    String    // Detailed content of the long article
+  article    Article   @relation(fields: [articleId], references: [id]) // Constraints are set here
+  articleId  Int       @unique // Foreign key linking to Article
+}
