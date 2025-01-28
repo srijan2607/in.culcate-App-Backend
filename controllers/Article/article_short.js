@@ -5,7 +5,7 @@ const { BadRequestError, NotFoundError } = require("../errors"); // Example cust
 const articleShortService = require("../services/article_short");
 
 // Fetch paginated short articles
-const fetchShortArticles = async (req, res) => {
+const send_20_Short_Article = async (req, res) => {
   try {
     const { page = 1 } = req.query; // Default to page 1 if no query parameter is provided
     const articles = await articleShortService.getPaginatedArticles(parseInt(page));
@@ -44,6 +44,6 @@ const fetchShortArticleById = async (req, res) => {
 };
 
 module.exports = {
-  fetchShortArticles,
+  send_20_Short_Article,
   fetchShortArticleById
 };

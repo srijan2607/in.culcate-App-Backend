@@ -6,7 +6,7 @@ const articleLongService = require("../services/article_long");
 
 
 // Fetch a single long article by ID
-const fetchLongArticleById = async (req, res) => {
+const sendArticle_long = async (req, res) => {
   try {
     const { id } = req.params;
     if (!id) throw new BadRequestError("ID parameter is required.");
@@ -24,6 +24,6 @@ const fetchLongArticleById = async (req, res) => {
 
 module.exports = {
   
-  fetchLongArticleById
+  sendArticle_long
 };
 
